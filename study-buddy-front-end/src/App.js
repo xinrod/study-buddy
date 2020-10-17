@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 import Home from './components/Home/Home';
-import ClassDashboard from './components/ClassDashboard/ClassDashboard'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'tachyons';
+
+import ClassDashboard from './components/ClassDashboard/ClassDashboard'
+
 
 import {
   BrowserRouter as Router,

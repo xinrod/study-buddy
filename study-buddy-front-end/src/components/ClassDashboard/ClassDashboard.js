@@ -8,11 +8,9 @@ const ClassDashboard = () => {
 
     return (
         <>  
-        <div class='ClassTitle'>
             <Container fliud>
-                <h3>The specific class Dashboard</h3>
+                <h1 class="tc">The specific class Dashboard</h1>
             </Container>
-        </div>
             <Reminder/>
         </>
     );
