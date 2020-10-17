@@ -7,7 +7,7 @@ const ReminderList = ({reminders}) => {
     const reminderComponent = reminders.map((user, i) => {
         return (
         <ReminderInfo 
-            name={reminders[i].title}
+            title={reminders[i].title}
             description={reminders[i].description}
         />
         )
