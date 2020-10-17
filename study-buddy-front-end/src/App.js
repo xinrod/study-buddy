@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Home from './components/Home/Home';
+import 'tachyons';
 
 import {
   BrowserRouter as Router,
@@ -12,8 +13,8 @@ import {
 export default function App() {
   return (
     <Router>
-      <nav className="grow dt w-100 border-box pa3 ph5-ns">
-                <Link to='/' className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" title="Home">
+      <nav className="dt w-100 border-box pa3 ph5-ns">
+                <Link to='/' className="grow link dim dark-gray f6 f5-ns dib mr3 mr4-ns" title="Home">
                     <img src="http://tachyons.io/img/logo.jpg" className="dib w2 h2 br-100" alt="Site Name" />
                     Buddy Study
                 </Link>
