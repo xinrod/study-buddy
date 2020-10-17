@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 import Home from './components/Home/Home';
+import ClassDashboard from './components/ClassDashboard/ClassDashboard'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'tachyons';
 
 import {
   BrowserRouter as Router,
@@ -28,6 +31,9 @@ export default function App() {
         <Route path="/about">
           {Signin()}
         </Route>
+        <Route path="/ClassDashboard">
+          <ClassDashboard></ClassDashboard>
+        </Route>
       </Switch>
     </Router>
   );
@@ -41,3 +47,4 @@ function Signin() {
 function Users() {
   return <h2>Users</h2>;
 }
+
