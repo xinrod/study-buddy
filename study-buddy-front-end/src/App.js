@@ -12,12 +12,21 @@ import {
 export default function App() {
   return (
     <Router>
+      <nav className="grow dt w-100 border-box pa3 ph5-ns">
+                <Link to='/' className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" title="Home">
+                    <img src="http://tachyons.io/img/logo.jpg" className="dib w2 h2 br-100" alt="Site Name" />
+                    Buddy Study
+                </Link>
+                <div className="grow dtc v-mid w-75 tr">
+                    <Link to='/signin' className="link dim dark-gray f6 f5-ns dib" href="#" title="signout">Sign Out</Link>
+                </div>
+      </nav>
       <Switch>
         <Route exact path="/">
           <Home/>
         </Route>
         <Route path="/about">
-          {About()}
+          {Signin()}
         </Route>
       </Switch>
     </Router>
@@ -25,8 +34,8 @@ export default function App() {
 }
 
 
-function About() {
-  return <h2>About</h2>;
+function Signin() {
+  return <h2>signin</h2>;
 }
 
 function Users() {
