@@ -10,22 +10,18 @@ import Form from 'react-bootstrap/Form'
 const Home = () => {
     const [visible, setVisible] = useState(false);
     const [currClass, setClass] = useState({
-        "name": '',
-        "id": '',
-        "description": '',
+        "name": 'defaultClass',
+        "id": 'CLA101',
+        "description": 'test class',
     });
-    const [classes, addClass] = useState([
-        {
-            "name": 'defaultClass',
-            "id": 'CLA101',
-            "description": 'test class',
-        }
-    ]);
+    const [classes, addClass] = useState([]);
 
     useEffect(() => {
         console.log('render');
         console.log(currClass)
-    });
+        addClass(classes.concat(currClass))
+        console.log(classes)
+    }, [currClass]);
 
     const showModal = () => {
         setVisible(true);
@@ -35,11 +31,11 @@ const Home = () => {
         e.preventDefault();
         setVisible(false);
         console.log(e.target);
-        await setClass({
+        setClass({
             name: e.target.name.value,
             id: e.target.classid.value,
             description: e.target.description.value
-        }).then(addClass([...classes, currClass]))
+        });
 
     };
 
