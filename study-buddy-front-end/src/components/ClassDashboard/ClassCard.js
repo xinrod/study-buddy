@@ -4,6 +4,13 @@ import './Card.css';
 import {Link} from 'react-router-dom';
 
 const ClassCard = ({title, author, id, onDelete}) => {
+
+    {/*CSS in a javascript object*/}
+    const btnStyle = {
+        borderStyle: "none",
+        backgroundColor: "white"
+    };
+
     return (
         <>
             <Link to={`/author=${author}/title=${title}`} className='nostyle' style={{color: 'inherit'}}>
@@ -14,10 +21,10 @@ const ClassCard = ({title, author, id, onDelete}) => {
                     </p>
                 
                 <div class="upvote-button">
-                    <button class="grow"type="button">^</button>
+                <button style={btnStyle} class="grow"type="button"><img src="./arrowup.png" alt="my image"/></button> {/* ADD onClick={} */}
                 </div>
                 <div class="downvote-button">
-                    <button class="grow"type="button">v</button>
+                    <button style={btnStyle} class="grow"type="button"><img src="./arrowdown.png" alt="my image"/></button> {/* ADD onClick={} */}
                 </div>
 
                 <nav style={{display: "inline"}} className='d-flex mt-auto align-self-end dt buttons'>
