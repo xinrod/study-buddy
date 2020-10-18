@@ -95,7 +95,6 @@ export default function App() {
 });
 const notePages = notes.map((noteTemp, i) => {
   if (noteTemp === undefined) {return <></>}
-  console.log(`/author=${notes[i].author}/title=${notes[i].title}`)
   return (
     <Route path={`/author=${notes[i].author}/title=${notes[i].title}`}>
       <Note
