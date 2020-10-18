@@ -72,6 +72,7 @@ export default function App() {
     return (
       <Route path={`/${classes[i].id}`}>
         <ClassDashboard
+            username={userName}
             name={classes[i].name}
             id={classes[i].id}
         />
@@ -108,7 +109,7 @@ export default function App() {
         </Route>
         {classPages}
         <Route path="/ClassDashboard">
-          <ClassDashboard/>
+          <ClassDashboard username={userName}/>
         </Route>
         <Route path="/WritingNotes">
           <WritingNotes/>

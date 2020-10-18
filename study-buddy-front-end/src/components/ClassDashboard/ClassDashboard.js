@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './ClassDashboard.css';
 import {Link} from 'react-router-dom';
 import ReminderContainer from './ReminderContainer.js';
@@ -13,7 +13,7 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 
 
-const ClassDashboard = ({name,id}) => {
+const ClassDashboard = ({username, name,id}) => {
 
 
 
@@ -33,34 +33,52 @@ const ClassDashboard = ({name,id}) => {
 
     const [searchField, updateSearch] = useState('');
     const [data, setData] = useState();
+    const [title, setTitle] = useState('');
+    const [submit, setSubmit] = useState('');
 
-    const filteredNotes = notes.filter(classC => {
-        return classC.name.toLowerCase().includes(searchField.toLowerCase());
-    });
+    // const filteredNotes = notes.filter(classC => {
+    //     return classC.name.toLowerCase().includes(searchField.toLowerCase());
+    // });
     const idClass = id;
+    const noteTitle = title
 
-    const handleSubmit = e => {
-        console.log(data);
+    useEffect(() => {
+        console.log('render');
         axios(`http://localhost:8000/addNotes`, {
             method: "POST",
             data: {
+                author: username,
+                title: noteTitle,
                 id: idClass,
                 content: data,
             },
         })
         .then(response => {
             if (response.data) {
-                console.log(`success!, added a notes.`)
+                console.log(`success!, added a note.`)
             }
         });
 
         axios(`http://localhost:8000/getNotes?id=${idClass}`)
         .then(response => {
             if (response.data) {
-                console.log(`success!, updated notes`, response.data)
+                addNote(response.data);
+                console.log(`success!, updated notes`)
             }
         });
+    
+        console.log(notes)
+      }, [submit]);
 
+    const handleSubmit = e => {
+        console.log(data);
+        console.log(title);
+        console.log(username);
+        setSubmit('submit')
+
+    }
+    const onInputChange = e => {
+        setTitle(e.target.parentElement.title.value);
     }
     return (
         <>  
@@ -72,7 +90,7 @@ const ClassDashboard = ({name,id}) => {
              
             <div class='pa2 ph4'>
             <Button type="primary" onClick={showModal}>
-                Open Modal
+                Paste/Create Your notes!
             </Button>
             <Modal
                 title="Text Editor"
@@ -84,10 +102,8 @@ const ClassDashboard = ({name,id}) => {
             >
 
                 <Form id="notesForm" class="pa4 black-80" onOk={handleSubmit}>
-                    <div class="measure">
-                        <label for="title" class="f6 b db mb2">Title<span class="normal black-60"></span></label>
-                        <input id='title' name='title' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
-                    </div>
+                        <label for="title" class="f6 b db mb2">Note Title<span class="normal black-60"></span></label>
+                        <input onChange= {onInputChange} id='title' name='title' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
                 </Form>
                <CKEditor                    
                 editor={ ClassicEditor }
@@ -111,7 +127,7 @@ const ClassDashboard = ({name,id}) => {
             </Modal>
             </div>
 
-            <CardContainer onDelete={onDelete} className="center" notes={filteredNotes}/>
+            <CardContainer onDelete={onDelete} className="center" notes={notes}/>
 
         </>
     );

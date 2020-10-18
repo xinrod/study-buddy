@@ -7,8 +7,8 @@ const CardContainer = ({ notes, onDelete}) => {
     const classComponent = notes.map((user, i) => {
         return (
             <ClassCard
-                title={notes[i].name}
-                description={notes[i].description}
+                title={notes[i].title}
+                author={notes[i].author}
                 onDelete={onDelete}
             />
         )
