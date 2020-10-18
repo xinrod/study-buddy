@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Modal, Button } from 'antd';
 import { useState } from 'react';
 import 'antd/dist/antd.css';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 import ReminderList from './ReminderList.js';
 
 const ReminderContainer = ({id}) => {
