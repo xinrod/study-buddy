@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 import './App.css';
 import Home from './components/Home/Home';
+import ClassDashboard from './components/ClassDashboard/ClassDashboard'
 import 'tachyons';
-
 
 import Profile from './components/Home/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
+<<<<<<< HEAD
 import SignIn from './components/SignIn/SignIn';
+=======
+import WritingNotes from './components/ClassDashboard/WritingNotes'
+>>>>>>> cf1cde7c35bc0846034025727d03b422a36d3bc1
 
 
 import {
@@ -107,6 +111,12 @@ export default function App() {
           <SignIn handleSubmit={handleSubmit} />
         </Route>
         {classPages}
+        <Route path="/ClassDashboard">
+          <ClassDashboard/>
+        </Route>
+        <Route path="/WritingNotes">
+          <WritingNotes/>
+        </Route>
       </Switch>
     </Router>
   );
