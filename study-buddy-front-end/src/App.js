@@ -7,6 +7,7 @@ import 'tachyons';
 import Profile from './components/Home/Profile';
 import SearchBar from './components/Home/SearchBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SignIn from './components/Home/SignIn';
 
 
 import {
@@ -37,6 +38,9 @@ export default function App() {
         </Route>
         <Route path="/about">
           {Signin()}
+        </Route>{/* I ADDED ANOTHER ROUTE TO LOGIN, NEEDS TO BE LINKED TO A SIGN IN/YOUR PROFILE BUTTON */}
+        <Route exact path="/login">
+          <SignIn/>
         </Route>
       </Switch>
     </Router>
