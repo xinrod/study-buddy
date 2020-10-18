@@ -3,16 +3,16 @@ import { Button, Card } from 'react-bootstrap';
 import './Card.css';
 import {Link} from 'react-router-dom';
 
-const ClassCard = ({title, author, id, votenumber, onDelete, onUpvote, onDownvote}) => {
+const ClassCard = ({title, author, id, content, votenumber, onDelete, onUpvote, onDownvote}) => {
 
     {/*CSS in a javascript object*/}
     const btnStyle = {
         borderStyle: "none",
         backgroundColor: "white"
     };
-
     return (
         <>
+            
             <Card className='card br3 ba pa3 ma2 bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
             <Link to={`/author=${author}/title=${title}`} className='nostyle grow' style={{color: 'inherit'}}>
 
