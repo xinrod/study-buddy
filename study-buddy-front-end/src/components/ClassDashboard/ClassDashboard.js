@@ -40,9 +40,9 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
     const [searchField, updateSearch] = useState('');
 
 
-    // const filteredNotes = notes.filter(classC => {
-    //     return classC.name.toLowerCase().includes(searchField.toLowerCase());
-    // });
+    const filteredNotes = notes.sort((note, note2) => {
+        return (note2.votenum > note.votenum ? 1 : -1);
+    });
     const idClass = id;
     const noteTitle = title
 
@@ -179,7 +179,7 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
             </div>
 
             <Scroll>
-                <CardContainer onDelete={onDelete} className="center" notes={notes} onUpvote={onUpvote} onDownvote={onDownvote}/>
+                <CardContainer onDelete={onDelete} className="center" notes={filteredNotes} onUpvote={onUpvote} onDownvote={onDownvote}/>
             </Scroll>
 
 
