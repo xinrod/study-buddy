@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 import Home from './components/Home/Home';
@@ -16,43 +16,97 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import ClassDashboard from './components/ClassDashboard/ClassDashboard';
 
 export default function App() {
 
   const [userName, setUsername] = useState('');
+  const [currClass, setClass] = useState({
+    name: '',
+    id: '',
+    description: '',
+  });
+  const [classes, addClass] = useState([]);
+
+  useEffect(() => {
+    console.log('render');
+    console.log(JSON.stringify(currClass))
+    fetch('http://localhost:8000/', {
+      method: 'POST',
+      body: JSON.stringify(currClass),
+      headers: {
+        'Content-Type': "application/json",
+        'Access-Control-Allow-Origin': 'http://localhost:3000'
+      },
+    }).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      console.log('Created Gist:', data.html_url);
+    });
+
+    fetch('http://localhost:8000/')
+      .then(response => response.json())
+      .then(data => {
+        addClass(data);
+        console.log(data);
+      });
+
+    console.log(classes)
+  }, [currClass]);
+
+  // useEffect(() => {
+  //     setClass({
+  //         name: '',
+  //         id: '',
+  //         description:'',
+  //     })
+  // },[classes]);
 
   const handleSubmit = (e) => {
     setUsername(e.target.username.value);
     // history.push("/");
   };
 
+  const classPages = classes.map((classTemp, i) => {
+    if (classTemp === undefined) {return <></>}
+    return (
+      <Route path={`/${classes[i].id}`}>
+        <ClassDashboard
+            name={classes[i].name}
+            id={classes[i].id}
+        />
+      </Route>
+    )
+});
+
   return (
-    <Router>      
+    <Router>
       <nav className="dt w-100 border-box pa3 ph5-ns">
-                <Link to='/' className="grow link dim black f1 f4-ns dib mr3 mr4-ns" title="Home">
-                    Buddy Study 
+        <Link to='/' className="grow link dim black f1 f4-ns dib mr3 mr4-ns" title="Home">
+          Buddy Study
                 </Link>
-                <Link to='/' className="grow link dim dark-gray f6 f5-ns dib mr3 mr4-ns" title="Home">
-                    Home
+        <Link to='/' className="grow link dim dark-gray f6 f5-ns dib mr3 mr4-ns" title="Home">
+          Home
                 </Link>
-                <Profile username={userName} className="link dim dark-gray f6 f5-ns dib"/>
-                {userName === '' ? 
-                <div className="grow dtc v-mid w-75 tr">
-                    <Link to='/signin' className="link dim dark-gray f6 f5-ns dib" href="#" title="signout">Sign In</Link>
-                </div>
-                :
-                <div className="grow dtc v-mid w-75 tr">
-                    <Link to='/signin' className="link dim dark-gray f6 f5-ns dib" href="#" title="signout">Sign Out</Link>
-                </div>
-              }
+        <Profile username={userName} className="link dim dark-gray f6 f5-ns dib" />
+        {userName === '' ?
+          <div className="grow dtc v-mid w-75 tr">
+            <Link to='/signin' className="link dim dark-gray f6 f5-ns dib" href="#" title="signout">Sign In</Link>
+          </div>
+          :
+          <div className="grow dtc v-mid w-75 tr">
+            <Link to='/signin' className="link dim dark-gray f6 f5-ns dib" href="#" title="signout">Sign Out</Link>
+          </div>
+        }
       </nav>
       <Switch>
         <Route exact path="/">
-          <Home/>
+          <Home currClass={currClass} setClass={setClass} classes={classes} addClass={addClass}/>
         </Route>
         <Route path="/signin">
-          <SignIn handleSubmit={handleSubmit}/>
+          <SignIn handleSubmit={handleSubmit} />
         </Route>
+        {classPages}
       </Switch>
     </Router>
   );

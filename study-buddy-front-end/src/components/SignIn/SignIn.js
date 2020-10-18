@@ -24,7 +24,7 @@ const SignIn = ({handleSubmit}) => {
         <>
             <section class="mw5 mw7-ns center bg-light-gray pa3 ph5-ns">
             <header>
-			<h1> Sign in to your account</h1>
+			<h1>Sign in to your account</h1>
 		    </header>
 
 {/* I did not change the labels/names in the html tags since there is not a CSS linked yet */ }

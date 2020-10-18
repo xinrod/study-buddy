@@ -9,41 +9,41 @@ import SearchBar from './SearchBar';
 import Scroll from './Scroll';
 
 
-const Home = () => {
+const Home = ({currClass, setClass, classes, addClass}) => {
     const [visible, setVisible] = useState(false);
-    const [currClass, setClass] = useState({
-        name: '',
-        id: '',
-        description: '',
-    });
-    const [classes, addClass] = useState([]);
+    // const [currClass, setClass] = useState({
+    //     name: '',
+    //     id: '',
+    //     description: '',
+    // });
+    // const [classes, addClass] = useState([]);
     const [searchField, updateSearch] = useState('');
 
-    useEffect(() => {
-        console.log('render');
-        console.log(JSON.stringify(currClass))
-        fetch('http://localhost:8000/', {
-            method: 'POST',
-            body: JSON.stringify(currClass),
-            headers: {
-            'Content-Type': "application/json", 
-            'Access-Control-Allow-Origin': 'http://localhost:3000'
-            },
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log('Created Gist:', data.html_url);
-        });
+    // useEffect(() => {
+    //     console.log('render');
+    //     console.log(JSON.stringify(currClass))
+    //     fetch('http://localhost:8000/', {
+    //         method: 'POST',
+    //         body: JSON.stringify(currClass),
+    //         headers: {
+    //         'Content-Type': "application/json", 
+    //         'Access-Control-Allow-Origin': 'http://localhost:3000'
+    //         },
+    //     }).then(function (response) {
+    //         return response.json();
+    //     }).then(function (data) {
+    //         console.log('Created Gist:', data.html_url);
+    //     });
 
-        fetch('http://localhost:8000/')
-        .then(response => response.json())
-        .then(data => {
-            addClass(data);
-            console.log(data);
-        });
+    //     fetch('http://localhost:8000/')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         addClass(data);
+    //         console.log(data);
+    //     });
 
-        console.log(classes)
-    }, [currClass]);
+    //     console.log(classes)
+    // }, [currClass]);
 
     // useEffect(() => {
     //     setClass({

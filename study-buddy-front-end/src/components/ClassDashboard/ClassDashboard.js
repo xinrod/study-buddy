@@ -7,12 +7,12 @@ import {Grid, Row, Col} from "react-bootstrap";
 import WritingNotes from './WritingNotes';
 
 
-const ClassDashboard = () => {
+const ClassDashboard = ({name, id}) => {
     
     return (
         <>  
             <div>
-            <h1 class="tc">The specific class Dashboard</h1>
+            <h1 class="tc">{name}</h1>
             <Reminder/>
             <hr class="my-4"></hr>
             </div>
