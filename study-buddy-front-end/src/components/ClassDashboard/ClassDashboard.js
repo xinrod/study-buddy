@@ -10,9 +10,22 @@ import { useState } from 'react';
 import { Modal, Button } from 'antd';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Form from 'react-bootstrap/Form';
 
 
 const ClassDashboard = () => {
+
+    async function handleSubmit(e) {
+        // e.preventDefault();
+        // setVisible(false);
+        // console.log(e.target);
+        // setClass({
+        //     name: e.target.name.value,
+        //     id: e.target.id.value,
+        //     description: e.target.description.value
+        // });
+
+    };
 
     const onDelete = (e) => {
 
@@ -53,6 +66,13 @@ const ClassDashboard = () => {
                 width={2000}
                 bodyStyle={{height: 500}}
             >
+
+                <Form id="classForm" class="pa4 black-80" onOk={handleSubmit}>
+                    <div class="measure">
+                        <label for="title" class="f6 b db mb2">Title<span class="normal black-60"></span></label>
+                        <input id='title' name='title' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
+                    </div>
+                </Form>
                <CKEditor                    
                 editor={ ClassicEditor }
                 data="<p>Notes Here! q=D</p>"

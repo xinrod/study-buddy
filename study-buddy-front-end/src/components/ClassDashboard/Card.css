@@ -135,3 +135,7 @@
 .reminderContent .measure{
     max-width: 40em;
 }
+
+.makeStop{
+    word-wrap: break-word;
+}

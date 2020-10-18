@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { Modal, Button } from 'antd';
 import { useState } from 'react';
 import 'antd/dist/antd.css';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 import ReminderList from './ReminderList.js';
 
 const ReminderContainer = () => {
@@ -53,15 +53,11 @@ const ReminderContainer = () => {
                 visible={visible}
                 onCancel={handleClose}
                 okButtonProps={{form:'reminderForm', key: 'submit', htmlType: 'submit'}}
-            >
+                >
                     <Form id="reminderForm" class="pa4 pv2 black-80" onSubmit={handleSubmit}>
                         <div class="measure">
                             <label for="title" class="f6 b db mb2">Title<span class="normal black-60"></span></label>
                             <input id='title' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="title-desc" />
-                        </div>
-                        <div class="measure">
-                            <label for="description" class="f6 b db mb2">Description<span class="normal black-60"></span></label>
-                            <input id='description' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="desc-desc" />
                         </div>
                     </Form>
                 </Modal>
