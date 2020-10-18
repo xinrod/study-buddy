@@ -6,6 +6,7 @@ import { Modal, Button } from 'antd';
 import 'antd/dist/antd.css';
 import Form from 'react-bootstrap/Form';
 import SearchBar from './SearchBar';
+import Scroll from './Scroll';
 
 
 const Home = () => {
@@ -136,7 +137,9 @@ const Home = () => {
             </Modal>
             <br></br> 
             <SearchBar handleSearch={handleSearch} className='ml4'/>
-            <CardContainer onDelete={onDelete} className="center" classes={filteredClasses}/>
+            <Scroll>
+                <CardContainer onDelete={onDelete} className="center" classes={filteredClasses}/>
+            </Scroll>
         </>
     );
 }

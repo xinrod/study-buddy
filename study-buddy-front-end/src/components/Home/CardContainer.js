@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import ClassCard from './ClassCard';
+import './Scroll.css'
 import { Link } from 'react-router-dom';
 
 const CardContainer = ({ classes, onDelete}) => {
@@ -16,9 +17,9 @@ const CardContainer = ({ classes, onDelete}) => {
     });
     return (
         <>
-            <section class="mw10 mw7-ns pa1 ph1-ns">
+            {/* <section class="classcontainer mw10 mw7-ns pa1 ph1-ns"> */}
                 {classComponent}
-            </section>
+            {/* </section> */}
         </>
     );
 }
