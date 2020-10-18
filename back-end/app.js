@@ -28,7 +28,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   next();
 });
-
 // '/' path
 app.post('/', async (req, res) => {
   console.log(req.body);
@@ -76,6 +75,22 @@ app.delete('/', async (req, res) => {
     res.send(result);
   });
 });
+
+app.delete('/deleteNote', async (req, res) => {
+  const id = req.query.id;
+  const title = req.query.title;
+  const author = req.query.author;
+  console.log(id,author,title, 'delete');
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const collection = database.collection(id);
+  collection.deleteOne(({id : id}, {title : title}, {author: author}), function(err, result) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    res.send(result);
+  });
+});
+
 app.get(`/getreminders`, async (req, res) => {
   console.log(req.query.id, 'get');
   const id = req.query.id;
@@ -152,6 +167,20 @@ app.get('/getNotes', async (req, res) => {
     }
     res.send(result);
   });
+});
+
+app.patch('/updateVote', async (req, res) => {
+  console.log(req.body);
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const idR = req.body.id;
+  const titleR = req.body.title;
+  const auth = req.body.author;
+  const collection = database.collection(idR);
+  collection.updateOne({
+    title: titleR,
+    author: auth,
+  }, { $inc: {votenum: parseInt(req.body.voteNumber)}});
 });
 
 
