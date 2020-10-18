@@ -2,11 +2,23 @@
 
 ### GET STARTED
 
-First
+1. First go into the back end directory:
 
+```cd back-end```
+
+2. Run the backend server:
+
+```npm run start```
+
+OR
+
+```npm run dev``` (using nodemon!)
+
+3. Then CD into the front-end
+```cd ../```
 ```cd study-buddy-front-end/```
 
-Then Run the React App
+4. Run the React App
 
 ```npm run start``` 
 
@@ -14,15 +26,4 @@ or
 
 ```npm start```
 
-Next go into the back end directory:
-
-```cd ../```
-```cd back-end```
-
-Run the backend server:
-
-```npm run start```
-
-OR
-
-```npm run dev``` (using nodemon!)
+### The app will be on http://localhost:3000
