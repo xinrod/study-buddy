@@ -7,6 +7,7 @@ import 'tachyons';
 import Profile from './components/Home/Profile';
 import SearchBar from './components/Home/SearchBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import WritingNotes from './components/ClassDashboard/WritingNotes'
 
 
 import {
@@ -40,6 +41,9 @@ export default function App() {
         </Route>
         <Route path="/ClassDashboard">
           <ClassDashboard/>
+        </Route>
+        <Route path="/WritingNotes">
+          <WritingNotes/>
         </Route>
       </Switch>
     </Router>
