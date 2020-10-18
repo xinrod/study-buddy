@@ -9,7 +9,7 @@ const CardContainer = ({ notes, onDelete, onUpvote, onDownvote}) => {
                 title={notes[i].title}
                 author={notes[i].author}
                 id={notes[i].id}
-                votenumber={notes[i].votenumber}
+                votenumber={notes[i].votenum}
                 onDelete={onDelete}
                 onUpvote={onUpvote}
                 onDownvote={onDownvote}

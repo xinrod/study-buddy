@@ -76,9 +76,7 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
       }, [submit]);
 
     const handleSubmit = e => {
-        console.log(data);
-        console.log(title);
-        console.log(username);
+        setVisible(false);
         setSubmit('submit')
 
     }
@@ -92,7 +90,7 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
         const reqid = id;
         const voteNumber = (e.target.getAttribute("votenumber")) + 1;
         console.log(voteNumber);
-        axios.patch(`http://localhost:8000/updateVote`, {id:reqid, title: title, author: author, voteNumber: '' + voteNumber})
+        axios.patch(`http://localhost:8000/updateVote`, {id:reqid, title: title, author: author, voteNumber: 1})
         .then(response => {
             console.log(response)
         });
@@ -104,7 +102,7 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
         const reqid = id;
         const voteNumber = (e.target.getAttribute("votenumber")) - 1;
         console.log(voteNumber);
-        axios.patch(`http://localhost:8000/updateVote`, {id:reqid, title: title, author: author, voteNumber: '' + voteNumber})
+        axios.patch(`http://localhost:8000/updateVote`, {id:reqid, title: title, author: author, voteNumber: -1})
         .then(response => {
             console.log(response)
         });
