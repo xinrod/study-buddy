@@ -86,7 +86,9 @@ export default function App() {
             data={data}
             setData={setData}
             title={title}
+            setTitle={setTitle}
             submit={submit}
+            setSubmit={setSubmit}
         />
       </Route>
     )
