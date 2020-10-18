@@ -67,7 +67,7 @@ const ClassDashboard = () => {
                 bodyStyle={{height: 500}}
             >
 
-                <Form id="classForm" class="pa4 black-80" onOk={handleSubmit}>
+                <Form id="notesForm" class="pa4 black-80" onOk={handleSubmit}>
                     <div class="measure">
                         <label for="title" class="f6 b db mb2">Title<span class="normal black-60"></span></label>
                         <input id='title' name='title' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
