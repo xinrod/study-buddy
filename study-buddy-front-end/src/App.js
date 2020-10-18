@@ -3,14 +3,10 @@ import './App.css';
 import Home from './components/Home/Home';
 import 'tachyons';
 
-<<<<<<< HEAD
-import ClassDashboard from './components/ClassDashboard/ClassDashboard'
-=======
 
 import Profile from './components/Home/Profile';
 import SearchBar from './components/Home/SearchBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
->>>>>>> main
 
 
 import {
@@ -41,9 +37,6 @@ export default function App() {
         </Route>
         <Route path="/about">
           {Signin()}
-        </Route>
-        <Route path="/ClassDashboard">
-          <ClassDashboard></ClassDashboard>
         </Route>
       </Switch>
     </Router>
