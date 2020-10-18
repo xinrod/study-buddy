@@ -117,3 +117,13 @@
         font-size: 1rem;
     }
 }
+
+.reminder-description{
+    width: 1000px;
+    padding-right: -100px;
+    border-right: -150px;
+}
+
+.reminder-box{
+    width: 20px;
+}

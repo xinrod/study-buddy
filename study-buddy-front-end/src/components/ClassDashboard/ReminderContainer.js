@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import './ClassDashboard.css';
 import {Link} from 'react-router-dom';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { Modal, Button } from 'antd';
 import { useState } from 'react';
 import 'antd/dist/antd.css';
@@ -15,8 +11,8 @@ const ReminderContainer = () => {
 
     const [visible, setVisible] = useState(false);
     const [currReminder, setReminder] = useState({
-        "title": 'default Title Class',
-        "description": 'test description',
+        title : "Midterm",
+        description : "Wednesday October 25th, there is a midterm at 12:00pm for CS101 class."
     });
     const [reminders, addReminder] = useState([]);
 
@@ -58,7 +54,7 @@ const ReminderContainer = () => {
                 onCancel={handleClose}
                 okButtonProps={{form:'reminderForm', key: 'submit', htmlType: 'submit'}}
             >
-                    <Form id="reminderForm" class="pa4 black-80" onSubmit={handleSubmit}>
+                    <Form id="reminderForm" class="pa4 pv2 black-80" onSubmit={handleSubmit}>
                         <div class="measure">
                             <label for="title" class="f6 b db mb2">Title<span class="normal black-60"></span></label>
                             <input id='title' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="title-desc" />
