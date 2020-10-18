@@ -6,6 +6,7 @@ var logger = require('morgan');
 var usersRouter = require('./routes/users');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient
+const cors = require('cors');
 
 const uri = "mongodb+srv://admin:admin@cluster0.wynk5.mongodb.net/studyBuddy?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useUnifiedTopology: true });
@@ -16,16 +17,26 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(cors());
 app.use(logger('dev'));
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  next();
+});
+
 // '/' path
 app.post('/', async (req, res) => {
+  console.log(req.body);
+  if(req.body.id === '' || req.body.id === undefined || req.body.name === '') {
+    return res.status(500);
+  }
   if (req.body.id === 'classes') {
-    return res.status(500).send(error);
+    return res.status(500);
   }
   console.log(req.body);
   await client.connect();
