@@ -13,6 +13,13 @@ const ClassCard = ({title, author, id, onDelete}) => {
                         Author: {author}
                     </p>
                 
+                <div class="upvote-button">
+                    <button class="grow"type="button">^</button>
+                </div>
+                <div class="downvote-button">
+                    <button class="grow"type="button">v</button>
+                </div>
+
                 <nav style={{display: "inline"}} className='d-flex mt-auto align-self-end dt buttons'>
                     <Button onClick={onDelete} forDeleteName={title} className='btn-sm di grow delete'>Delete</Button>
                 </nav>

@@ -17,6 +17,8 @@ import {
     Link,
   } from "react-router-dom";
 import Note from './Note';
+import Scroll from '../Home/Scroll';
+
 
 
 const ClassDashboard = ({username, name, id, notes, addNote, data, setData, title, setTitle, submit, setSubmit}) => {
@@ -148,7 +150,9 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
             </Modal>
             </div>
 
-            <CardContainer onDelete={onDelete} className="center" notes={notes}/>
+            <Scroll>
+                <CardContainer onDelete={onDelete} className="center" notes={notes}/>
+            </Scroll>
 
 
         </>
