@@ -4,7 +4,8 @@ import CardContainer from './CardContainer';
 import { useState } from 'react';
 import { Modal, Button } from 'antd';
 import 'antd/dist/antd.css';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import SearchBar from './SearchBar';
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         description: '',
     });
     const [classes, addClass] = useState([]);
+    const [searchField, updateSearch] = useState('');
 
     useEffect(() => {
         console.log('render');
@@ -54,6 +56,32 @@ const Home = () => {
         setVisible(true);
     }
 
+    const onDelete = (e) => {
+        const n = (e.target.getAttribute('forDeleteName'));
+        const i = (e.target.getAttribute('forDeleteID'));
+
+        console.log(JSON.stringify({
+            name : n,
+            id : i,
+            description: ""
+        }))
+        fetch('http://localhost:8000/', {
+            method: 'DELETE',
+            body: JSON.stringify({
+                name : n,
+                id : i,
+                description: ""
+            }),
+            headers: {
+            'Content-Type': "application/json", 
+            'Access-Control-Allow-Origin': 'http://localhost:3000'
+            },
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+        });
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         setVisible(false);
@@ -69,10 +97,18 @@ const Home = () => {
     const handleClose = e => {
         setVisible(false);
     }
+
+    const handleSearch = e => {
+        updateSearch(e.target.value);
+    }
+    const filteredClasses = classes.filter(classC => {
+        return classC.name.toLowerCase().includes(searchField.toLowerCase());
+    });
     return (
         <>
-            <h1>Your Classes</h1>
-            <Button type='primary' onClick={showModal}>
+        
+            <h1 className='ml4'>Your Classes</h1>
+            <Button type='primary' className='ml4' onClick={showModal}>
                 Create Class
             </Button>
             <Modal
@@ -98,7 +134,9 @@ const Home = () => {
 
 
             </Modal>
-            <CardContainer classes={classes} />
+            <br></br> 
+            <SearchBar handleSearch={handleSearch} className='ml4'/>
+            <CardContainer onDelete={onDelete} className="center" classes={filteredClasses}/>
         </>
     );
 }

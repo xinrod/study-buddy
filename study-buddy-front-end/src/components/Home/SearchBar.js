@@ -1,11 +1,11 @@
 import React from 'react';
 import './SearchBar.css'
-const SearchBar = ({placeholder,handleChange}) =>{
+const SearchBar = ({handleSearch}) =>{
     return(
         <input type='search'
-        className='search'
-        placeholder={placeholder}
-        onChange = {handleChange}
+        className='search ml4'
+        placeholder='search for a class...'
+        onChange = {handleSearch}
         />
     )
 }
