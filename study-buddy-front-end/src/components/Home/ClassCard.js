@@ -9,7 +9,7 @@ const ClassCard = ({name, id, description, onDelete}) => {
             <Link to={id} className='nostyle' style={{color: 'inherit'}}>
             <Card className='card br3 ba pa3 ma2 grow bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
                             <div id='name'>{name}</div>
-                    <p class="f6 lh-copy measure mid-gray">
+                    <p className="f6 lh-copy measure mid-gray">
                         {description}
                     </p>
                 

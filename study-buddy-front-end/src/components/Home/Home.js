@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Home.css';
 import CardContainer from './CardContainer';
 import { useState } from 'react';
@@ -9,41 +9,41 @@ import SearchBar from './SearchBar';
 import Scroll from './Scroll';
 
 
-const Home = () => {
+const Home = ({currClass, setClass, classes, addClass}) => {
     const [visible, setVisible] = useState(false);
-    const [currClass, setClass] = useState({
-        name: '',
-        id: '',
-        description: '',
-    });
-    const [classes, addClass] = useState([]);
+    // const [currClass, setClass] = useState({
+    //     name: '',
+    //     id: '',
+    //     description: '',
+    // });
+    // const [classes, addClass] = useState([]);
     const [searchField, updateSearch] = useState('');
 
-    useEffect(() => {
-        console.log('render');
-        console.log(JSON.stringify(currClass))
-        fetch('http://localhost:8000/', {
-            method: 'POST',
-            body: JSON.stringify(currClass),
-            headers: {
-            'Content-Type': "application/json", 
-            'Access-Control-Allow-Origin': 'http://localhost:3000'
-            },
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log('Created Gist:', data.html_url);
-        });
+    // useEffect(() => {
+    //     console.log('render');
+    //     console.log(JSON.stringify(currClass))
+    //     fetch('http://localhost:8000/', {
+    //         method: 'POST',
+    //         body: JSON.stringify(currClass),
+    //         headers: {
+    //         'Content-Type': "application/json", 
+    //         'Access-Control-Allow-Origin': 'http://localhost:3000'
+    //         },
+    //     }).then(function (response) {
+    //         return response.json();
+    //     }).then(function (data) {
+    //         console.log('Created Gist:', data.html_url);
+    //     });
 
-        fetch('http://localhost:8000/')
-        .then(response => response.json())
-        .then(data => {
-            addClass(data);
-            console.log(data);
-        });
+    //     fetch('http://localhost:8000/')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         addClass(data);
+    //         console.log(data);
+    //     });
 
-        console.log(classes)
-    }, [currClass]);
+    //     console.log(classes)
+    // }, [currClass]);
 
     // useEffect(() => {
     //     setClass({
@@ -118,25 +118,27 @@ const Home = () => {
                 onCancel={handleClose}
                 okButtonProps={{ form: 'classForm', key: 'submit', htmlType: 'submit' }}
             >
-                <Form id="classForm" class="pa4 black-80" onSubmit={handleSubmit}>
-                    <div class="measure">
-                        <label for="name" class="f6 b db mb2">Name<span class="normal black-60"></span></label>
-                        <input id='name' name='name' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
+                <Form id="classForm" className="pa4 black-80" onSubmit={handleSubmit}>
+                    <div className="measure">
+                        <label for="name" className="f6 b db mb2">Name<span className="normal black-60"></span></label>
+                        <input id='name' name='name' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
                     </div>
-                    <div class="measure">
-                        <label for="classid" class="f6 b db mb2">Class ID<span class="normal black-60"></span></label>
-                        <input id="classid" name='id' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
+                    <div className="measure">
+                        <label for="classid" className="f6 b db mb2">Class ID<span className="normal black-60"></span></label>
+                        <input id="classid" name='id' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
                     </div>
-                    <div class="measure">
-                        <label for="description" class="f6 b db mb2">Description<span class="normal black-60"></span></label>
-                        <textarea id="description" name='description' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
+                    <div className="measure">
+                        <label for="description" className="f6 b db mb2">Description<span className="normal black-60"></span></label>
+                        <textarea id="description" name='description' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
                     </div>
                 </Form>
 
 
             </Modal>
             <br></br> 
-            <SearchBar handleSearch={handleSearch} className='ml4'/>
+            <div class="flex flex-wrap">
+                <SearchBar handleSearch={handleSearch} className='ml4'/>
+            </div>
             <Scroll>
                 <CardContainer onDelete={onDelete} className="center" classes={filteredClasses}/>
             </Scroll>

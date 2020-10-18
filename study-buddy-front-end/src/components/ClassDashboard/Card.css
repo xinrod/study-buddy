@@ -118,29 +118,51 @@
     }
 }
 
-@keyframes anvil {
-    0% {
-      transform: scale(1) translateY(0px);
-      opacity: 0;
-      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    1% {
-      transform: scale(0.96) translateY(10px);
-      opacity: 0;
-      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-    }
-    100% {
-      transform: scale(1) translateY(0px);
-      opacity: 1;
-      box-shadow: 0 0 500px rgba(241, 241, 241, 0);
-    }
-  }
-  .popup-content {
-    -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-  }
+.reminder-description{
+    width: 1000px;
+    padding-right: -100px;
+    border-right: -150px;
+}
 
-  .search{
-      width: 1600px !important;
-      outline-style: solid;
-      outline-width: 1px;
-  }
+.reminder-box{
+    width: 20px;
+}
+
+.reminder-card .card{
+    min-width: 600px;
+}
+
+.reminderContent .measure{
+    max-width: 40em;
+}
+
+.makeStop{
+    word-wrap: break-word;
+}
+
+.ck-editor__editable_inline {
+    min-height: 350px !important;
+}
+
+.upvote-button{
+    position: absolute;
+    bottom: 10px;
+    width: 50%;
+    color: green;
+}
+
+.downvote-button{
+    position: absolute;
+    right: 87px;
+    bottom: 10px;
+    width: 50%;
+    color:red;
+}
+
+.vote-number{
+    position: absolute;
+    right: 40px;
+    bottom: 10px;
+    width: 50%;
+    color:black;
+}

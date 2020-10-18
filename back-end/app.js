@@ -28,7 +28,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   next();
 });
-
 // '/' path
 app.post('/', async (req, res) => {
   console.log(req.body);
@@ -77,6 +76,112 @@ app.delete('/', async (req, res) => {
   });
 });
 
+app.delete('/deleteNote', async (req, res) => {
+  const id = req.query.id;
+  const title = req.query.title;
+  const author = req.query.author;
+  console.log(id,author,title, 'delete');
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const collection = database.collection(id);
+  collection.deleteOne(({id : id}, {title : title}, {author: author}), function(err, result) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    res.send(result);
+  });
+});
+
+app.get(`/getreminders`, async (req, res) => {
+  console.log(req.query.id, 'get');
+  const id = req.query.id;
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const collection = database.collection(id);
+  collection.find({type:"reminder"}).toArray((error, result) => {
+    if (error) {
+      return response.status(500).send(error);
+    }
+    res.send(result);
+  });
+});
+app.post('/addreminder', async (req, res) => {
+  console.log(req.body,'postrequest')
+  if (req.body.name === '') {
+    return res.status(500).send('empty name');
+  }
+  console.log(req.body.id);
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const collection = database.collection(req.body.id);
+  collection.insertOne(({
+    name : req.body.name,   
+    date : req.body.date, 
+    type : "reminder"}), (err, result) => {
+    if (err) throw err;
+    console.log('request added in ' + req.body.id);
+    res.send(result);
+  });
+});
+
+app.post('/addNotes', async (req, res) => {
+  console.log(req.body,'postrequestnote')
+  let name = req.body.author;
+  if (name === '') {
+    name = "Anonymous";
+  }
+  if (req.body.title === '') {
+    console.log('empty note');
+    return res.status(500).send('empty title');
+  }
+  if (req.body.content === `<p>Notes Here! q=D/p>` || 
+  req.body.content === undefined ||
+  req.body.content === '') {
+    console.log('empty note');
+    return res.status(500).send('empty name');
+  }
+  // console.log(req.body.id);
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const collection = database.collection(req.body.id);
+  collection.insertOne(({   
+    author: name,
+    id: req.body.id,
+    title: req.body.title,
+    content : req.body.content, 
+    type : "note"}), (err, result) => {
+    if (err) throw err;
+    console.log('request added in ' + req.body.id);
+    res.send(result);
+  });
+});
+
+app.get('/getNotes', async (req, res) => {
+  console.log(req.body,'getrequestnote')
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const id = req.query.id;
+  const collection = database.collection(id);
+  collection.find({type:"note"}).toArray((error, result) => {
+    if (error) {
+      return response.status(500).send(error);
+    }
+    res.send(result);
+  });
+});
+
+app.patch('/updateVote', async (req, res) => {
+  console.log(req.body);
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const idR = req.body.id;
+  const titleR = req.body.title;
+  const auth = req.body.author;
+  const collection = database.collection(idR);
+  collection.updateOne({
+    title: titleR,
+    author: auth,
+  }, { $inc: {votenum: parseInt(req.body.voteNumber)}});
+});
 
 
 app.use('/users', usersRouter);
