@@ -2,7 +2,6 @@ import React from 'react';
 import './ClassDashboard.css';
 import {Link} from 'react-router-dom';
 import ReminderContainer from './ReminderContainer.js';
-import NotesContainer from './NotesContainer';
 import {Grid, Row, Col} from "react-bootstrap";
 import WritingNotes from './WritingNotes';
 import CardContainer from './CardContainer';
@@ -10,6 +9,7 @@ import { useState } from 'react';
 import { Modal, Button } from 'antd';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import axios from 'axios';
 
 
 const ClassDashboard = ({name,id}) => {
@@ -26,14 +26,39 @@ const ClassDashboard = ({name,id}) => {
         setVisible(false);
     }
 
-    const [notes, addClass] = useState([]);
+    const [notes, addNote] = useState([]);
 
     const [searchField, updateSearch] = useState('');
+    const [data, setData] = useState();
 
     const filteredNotes = notes.filter(classC => {
         return classC.name.toLowerCase().includes(searchField.toLowerCase());
     });
-    
+    const idClass = id;
+
+    const handleSubmit = e => {
+        console.log(data);
+        axios(`http://localhost:8000/addNotes`, {
+            method: "POST",
+            data: {
+                id: idClass,
+                content: data,
+            },
+        })
+        .then(response => {
+            if (response.data) {
+                console.log(`success!, added a notes.`)
+            }
+        });
+
+        axios(`http://localhost:8000/getNotes?id=${idClass}`)
+        .then(response => {
+            if (response.data) {
+                console.log(`success!, updated notes`, response.data)
+            }
+        });
+
+    }
     return (
         <>  
             <div>
@@ -50,6 +75,7 @@ const ClassDashboard = ({name,id}) => {
                 title="Text Editor"
                 visible={visible}
                 onCancel={handleClose}
+                onOk={handleSubmit}
                 width={2000}
                 bodyStyle={{height: 500}}
             >
@@ -61,7 +87,8 @@ const ClassDashboard = ({name,id}) => {
                     console.log( 'Editor is ready to use!', editor );
                 } }
                 onChange={ ( event, editor ) => {
-                    const data = editor.getData();
+                    const dataTemp = editor.getData();
+                    setData(dataTemp);
                     console.log( { event, editor, data } );
                 } }
                 onBlur={ ( event, editor ) => {

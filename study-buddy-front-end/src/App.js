@@ -7,11 +7,8 @@ import 'tachyons';
 
 import Profile from './components/Home/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
-<<<<<<< HEAD
 import SignIn from './components/SignIn/SignIn';
-=======
 import WritingNotes from './components/ClassDashboard/WritingNotes'
->>>>>>> cf1cde7c35bc0846034025727d03b422a36d3bc1
 
 
 import {
@@ -20,7 +17,6 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import ClassDashboard from './components/ClassDashboard/ClassDashboard';
 
 export default function App() {
 
