@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import './Card.css';
 
-const ReminderInfo = ({title, description}) => {
+const ReminderInfo = ({name, date}) => {
 
     return (
         <>
@@ -11,11 +11,11 @@ const ReminderInfo = ({title, description}) => {
                     <div class="pa2 ph3-ns pb3-ns reminder-box">
                         <div class="dt w-100 mt1">
                             <div class="dtc">
-                                <h1 class="f5 f4-ns mv0">{title}</h1>
+                                <h1 class="f5 f4-ns mv0">{name}</h1>
                             </div>
                         </div>
                         <p class="f6 lh-copy measure mt2 mid-gray reminder-description">
-                            {description}
+                            {date}
                         </p>
                     </div>
                 </Card>

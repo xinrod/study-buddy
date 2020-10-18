@@ -76,7 +76,37 @@ app.delete('/', async (req, res) => {
     res.send(result);
   });
 });
-
+app.get(`/getreminders`, async (req, res) => {
+  console.log(req.query.id, 'get');
+  const id = req.query.id;
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const collection = database.collection(id);
+  collection.find({type:"reminder"}).toArray((error, result) => {
+    if (error) {
+      return response.status(500).send(error);
+    }
+    res.send(result);
+  });
+});
+app.post('/addreminder', async (req, res) => {
+  console.log(req.body,'postrequest')
+  if (req.body.name === '') {
+    return res.status(500).send('empty name');
+  }
+  console.log(req.body.id);
+  await client.connect();
+  const database = client.db('studyBuddy');
+  const collection = database.collection(req.body.id);
+  collection.insertOne(({
+    name : req.body.name,   
+    date : req.body.date, 
+    type : "reminder"}), (err, result) => {
+    if (err) throw err;
+    console.log('request added in ' + req.body.id);
+    res.send(result);
+  });
+});
 
 
 app.use('/users', usersRouter);

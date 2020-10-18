@@ -1,7 +1,7 @@
 import React from 'react';
 import './ClassDashboard.css';
 import {Link} from 'react-router-dom';
-import Reminder from './ReminderContainer.js';
+import ReminderContainer from './ReminderContainer.js';
 import NotesContainer from './NotesContainer';
 import {Grid, Row, Col} from "react-bootstrap";
 import WritingNotes from './WritingNotes';
@@ -13,7 +13,7 @@ const ClassDashboard = ({name, id}) => {
         <>  
             <div>
             <h1 class="tc">{name}</h1>
-            <Reminder/>
+            <ReminderContainer id={id}/>
             <hr class="my-4"></hr>
             </div>
 
