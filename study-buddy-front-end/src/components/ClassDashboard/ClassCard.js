@@ -12,20 +12,11 @@ const ClassCard = ({title, author, id, content, votenumber, onDelete, onUpvote, 
         backgroundColor: "white"
     };
 
-    const [count, setCount] = useState(votenumber);
 
-    function addOne(){
-        console.log(count)
-        setCount(count => count + 1);
-    }
-
-    const subOne = () =>{
-        setCount(count - 1);
-    }
 
     useEffect( ()=>{
-
-    }, [count]) 
+        console.log('render');
+    }, []) 
 
     
     let currValue = votenumber;
@@ -42,10 +33,10 @@ const ClassCard = ({title, author, id, content, votenumber, onDelete, onUpvote, 
 
 
                 <div class="upvote-button">
-                    <Button onClick={onUpvote, addOne} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowup.png" alt="upvote"/></Button>
+                    <Button onClick={onUpvote} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowup.png" alt="upvote"/></Button>
                 </div>
                 <div class="downvote-button">
-                    <Button onClick={onDownvote, subOne} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowdown.png" alt="downvote"/></Button>
+                    <Button onClick={onDownvote} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowdown.png" alt="downvote"/></Button>
                 </div>
 
                 <div class="vote-number">
