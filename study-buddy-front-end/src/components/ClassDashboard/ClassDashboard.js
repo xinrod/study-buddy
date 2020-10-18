@@ -15,29 +15,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const ClassDashboard = () => {
 
     const onDelete = (e) => {
-        // const n = (e.target.getAttribute('forDeleteName'));
-        // const i = (e.target.getAttribute('forDeleteID'));
 
-        // console.log(JSON.stringify({
-        //     name : n,
-        //     id : i,
-        //     description: ""
-        // }))
-        // fetch('http://localhost:8000/', {
-        //     method: 'DELETE',
-        //     body: JSON.stringify({
-        //         name : n,
-        //         id : i,
-        //         description: ""
-        //     }),
-        //     headers: {
-        //     'Content-Type': "application/json", 
-        //     'Access-Control-Allow-Origin': 'http://localhost:3000'
-        //     },
-        // }).then(function (response) {
-        //     return response.json();
-        // }).then(function (data) {
-        // });
     }
     
     const [visible, setVisible] = useState(false);
@@ -63,11 +41,8 @@ const ClassDashboard = () => {
             <Reminder/>
             <hr class="my-4"></hr>
             </div>
-
-            <div class="ph5 pv3">
-                <a class="f6 grow no-underline br-pill ph3 pv2 mb2 dib white bg-purple" href="/WritingNotes">New Notes</a>
-            </div>
-
+             
+            <div class='pa2 ph4'>
             <Button type="primary" onClick={showModal}>
                 Open Modal
             </Button>
@@ -97,6 +72,7 @@ const ClassDashboard = () => {
                 } } />
                 
             </Modal>
+            </div>
 
             <CardContainer onDelete={onDelete} className="center" notes={filteredNotes}/>
 
