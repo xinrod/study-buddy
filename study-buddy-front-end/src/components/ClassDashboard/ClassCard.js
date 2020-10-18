@@ -3,28 +3,30 @@ import { Button, Card } from 'react-bootstrap';
 import './Card.css';
 import {Link} from 'react-router-dom';
 
-const ClassCard = ({title, author, id, onDelete}) => {
+const ClassCard = ({title, author, id, votenumber, onDelete, onUpvote, onDownvote}) => {
     return (
         <>
-            <Link to={`/author=${author}/title=${title}`} className='nostyle' style={{color: 'inherit'}}>
-            <Card className='card br3 ba pa3 ma2 grow bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
-                            <div id='title'>{title}</div>
+            <Card className='card br3 ba pa3 ma2 bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
+            <Link to={`/author=${author}/title=${title}`} className='nostyle grow' style={{color: 'inherit'}}>
+
+                            <div>{title}</div>
                     <p class="f6 lh-copy measure mid-gray">
                         Author: {author}
                     </p>
+            </Link> 
+
                 
                 <div class="upvote-button">
-                    <button class="grow"type="button">^</button>
+                    <Button onClick={onUpvote} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow">^</Button>
                 </div>
                 <div class="downvote-button">
-                    <button class="grow"type="button">v</button>
+                    <Button onClick={onDownvote}  titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow">v</Button>
                 </div>
 
                 <nav style={{display: "inline"}} className='d-flex mt-auto align-self-end dt buttons'>
-                    <Button onClick={onDelete} forDeleteName={title} className='btn-sm di grow delete'>Delete</Button>
+                    <Button onClick={onDelete}  titleforrequest={`${title}`} authorforrequest={`${author}`} className='btn-sm di grow delete'>Delete</Button>
                 </nav>
             </Card>
-            </Link> 
 
 
         </>

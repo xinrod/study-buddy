@@ -23,11 +23,6 @@ import Scroll from '../Home/Scroll';
 
 const ClassDashboard = ({username, name, id, notes, addNote, data, setData, title, setTitle, submit, setSubmit}) => {
 
-
-
-    const onDelete = (e) => {
-
-    }
     
     const [visible, setVisible] = useState(false);
     const showModal = () => {
@@ -41,7 +36,6 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
     // const [data, setData] = useState();
     // const [title, setTitle] = useState('');
     // const [submit, setSubmit] = useState('');
-
 
     const [searchField, updateSearch] = useState('');
 
@@ -61,6 +55,7 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
                 title: noteTitle,
                 id: idClass,
                 content: data,
+                voteNumber: 0,
             },
         })
         .then(response => {
@@ -89,6 +84,37 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
     }
     const onInputChange = e => {
         setTitle(e.target.parentElement.title.value);
+    }
+
+    const onUpvote = e => {
+        const title = (e.target.getAttribute("titleforrequest"));
+        const author = (e.target.getAttribute("authorforrequest"));
+        const reqid = id;
+        const voteNumber = (e.target.getAttribute("votenumber")) + 1;
+        console.log(voteNumber);
+        axios.patch(`http://localhost:8000/updateVote`, {id:reqid, title: title, author: author, voteNumber: '' + voteNumber})
+        .then(response => {
+            console.log(response)
+        });
+    }
+
+    const onDownvote = e => {
+        const title = (e.target.getAttribute("titleforrequest"));
+        const author = (e.target.getAttribute("authorforrequest"));
+        const reqid = id;
+        const voteNumber = (e.target.getAttribute("votenumber")) - 1;
+        console.log(voteNumber);
+        axios.patch(`http://localhost:8000/updateVote`, {id:reqid, title: title, author: author, voteNumber: '' + voteNumber})
+        .then(response => {
+            console.log(response)
+        });
+    }
+
+    const onDelete = e => {
+        const title = (e.target.getAttribute("titleforrequest"));
+        const author = (e.target.getAttribute("authorforrequest"));
+        const reqid = id;
+
     }
     // const notePages = notes.map((noteTemp, i) => {
     //     if (noteTemp === undefined) {return <></>}
@@ -151,7 +177,7 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
             </div>
 
             <Scroll>
-                <CardContainer onDelete={onDelete} className="center" notes={notes}/>
+                <CardContainer onDelete={onDelete} className="center" notes={notes} onUpvote={onUpvote} onDownvote={onDownvote}/>
             </Scroll>
 
 
