@@ -11,7 +11,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
-
+import Scroll from './Scroll';
 
 const ClassDashboard = ({username, name,id}) => {
 
@@ -127,7 +127,9 @@ const ClassDashboard = ({username, name,id}) => {
             </Modal>
             </div>
 
-            <CardContainer onDelete={onDelete} className="center" notes={notes}/>
+            <Scroll>
+                <CardContainer onDelete={onDelete} className="center" notes={notes}/>
+            </Scroll>
 
         </>
     );
