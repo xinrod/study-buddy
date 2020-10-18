@@ -114,6 +114,10 @@ const ClassDashboard = ({username, name, id, notes, addNote, data, setData, titl
         const title = (e.target.getAttribute("titleforrequest"));
         const author = (e.target.getAttribute("authorforrequest"));
         const reqid = id;
+        axios.delete(`http://localhost:8000/deleteNote?id=${reqid}&title=${title}&author=${author}`)
+        .then(response => {
+            console.log('note deleted');
+        })
 
     }
     // const notePages = notes.map((noteTemp, i) => {
