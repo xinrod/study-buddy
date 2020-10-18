@@ -3,10 +3,10 @@ import { Button, Card } from 'react-bootstrap';
 import './Card.css';
 import {Link} from 'react-router-dom';
 
-const ClassCard = ({title, author, onDelete}) => {
+const ClassCard = ({title, author, id, onDelete}) => {
     return (
         <>
-            {/* <Link to={id} className='nostyle' style={{color: 'inherit'}}></Link> */}
+            <Link to={`/author=${author}/title=${title}`} className='nostyle' style={{color: 'inherit'}}>
             <Card className='card br3 ba pa3 ma2 grow bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
                             <div id='title'>{title}</div>
                     <p class="f6 lh-copy measure mid-gray">
@@ -17,6 +17,7 @@ const ClassCard = ({title, author, onDelete}) => {
                     <Button onClick={onDelete} forDeleteName={title} className='btn-sm di grow delete'>Delete</Button>
                 </nav>
             </Card>
+            </Link> 
 
 
         </>

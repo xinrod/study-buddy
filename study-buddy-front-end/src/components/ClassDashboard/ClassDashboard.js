@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './ClassDashboard.css';
-import {Link} from 'react-router-dom';
 import ReminderContainer from './ReminderContainer.js';
 import {Grid, Row, Col} from "react-bootstrap";
 import WritingNotes from './WritingNotes';
@@ -11,9 +10,16 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+  } from "react-router-dom";
+import Note from './Note';
 
 
-const ClassDashboard = ({username, name,id}) => {
+const ClassDashboard = ({username, name, id, notes, addNote, data, setData, title, setTitle, submit, setSubmit}) => {
 
 
 
@@ -29,12 +35,14 @@ const ClassDashboard = ({username, name,id}) => {
         setVisible(false);
     }
 
-    const [notes, addNote] = useState([]);
+    // const [notes, addNote] = useState([]);
+    // const [data, setData] = useState();
+    // const [title, setTitle] = useState('');
+    // const [submit, setSubmit] = useState('');
+
 
     const [searchField, updateSearch] = useState('');
-    const [data, setData] = useState();
-    const [title, setTitle] = useState('');
-    const [submit, setSubmit] = useState('');
+
 
     // const filteredNotes = notes.filter(classC => {
     //     return classC.name.toLowerCase().includes(searchField.toLowerCase());
@@ -80,6 +88,19 @@ const ClassDashboard = ({username, name,id}) => {
     const onInputChange = e => {
         setTitle(e.target.parentElement.title.value);
     }
+    // const notePages = notes.map((noteTemp, i) => {
+    //     if (noteTemp === undefined) {return <></>}
+    //     return (
+    //       <Route path={`/${notes[i].id}/author=${notes[i].author}?title=${notes[i].title}`}>
+    //         <Note   
+    //             author={notes[i].author}
+    //             title={notes[i].title}
+    //             id={notes[i].id}
+    //             content={notes[i].content}
+    //         />
+    //       </Route>
+    //     )
+    // });
     return (
         <>  
             <div>
@@ -128,6 +149,7 @@ const ClassDashboard = ({username, name,id}) => {
             </div>
 
             <CardContainer onDelete={onDelete} className="center" notes={notes}/>
+
 
         </>
     );

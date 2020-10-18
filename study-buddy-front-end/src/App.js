@@ -17,8 +17,14 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import Note from './components/ClassDashboard/Note';
 
 export default function App() {
+
+  const [notes, addNote] = useState([]);
+  const [data, setData] = useState();
+  const [title, setTitle] = useState('');
+  const [submit, setSubmit] = useState('');
 
   const [userName, setUsername] = useState('');
   const [currClass, setClass] = useState({
@@ -75,9 +81,29 @@ export default function App() {
             username={userName}
             name={classes[i].name}
             id={classes[i].id}
+            notes={notes}
+            addNote={addNote}
+            data={data}
+            setData={setData}
+            title={title}
+            submit={submit}
         />
       </Route>
     )
+});
+const notePages = notes.map((noteTemp, i) => {
+  if (noteTemp === undefined) {return <></>}
+  console.log(`/author=${notes[i].author}/title=${notes[i].title}`)
+  return (
+    <Route path={`/author=${notes[i].author}/title=${notes[i].title}`}>
+      <Note
+          author={notes[i].author}
+          title={notes[i].title}
+          id={notes[i].id}
+          content={notes[i].content}
+      />
+    </Route>
+  )
 });
 
   return (
@@ -108,6 +134,7 @@ export default function App() {
           <SignIn handleSubmit={handleSubmit} />
         </Route>
         {classPages}
+        {notePages}
         <Route path="/ClassDashboard">
           <ClassDashboard username={userName}/>
         </Route>
