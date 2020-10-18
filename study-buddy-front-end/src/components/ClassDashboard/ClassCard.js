@@ -4,6 +4,13 @@ import './Card.css';
 import {Link} from 'react-router-dom';
 
 const ClassCard = ({title, author, id, votenumber, onDelete, onUpvote, onDownvote}) => {
+
+    {/*CSS in a javascript object*/}
+    const btnStyle = {
+        borderStyle: "none",
+        backgroundColor: "white"
+    };
+
     return (
         <>
             <Card className='card br3 ba pa3 ma2 bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
@@ -17,10 +24,10 @@ const ClassCard = ({title, author, id, votenumber, onDelete, onUpvote, onDownvot
 
                 
                 <div class="upvote-button">
-                    <Button onClick={onUpvote} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow">^</Button>
+                    <Button onClick={onUpvote} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowup.png" alt="upvote"/></Button>
                 </div>
                 <div class="downvote-button">
-                    <Button onClick={onDownvote}  titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow">v</Button>
+                    <Button onClick={onDownvote} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowdown.png" alt="downvote"/></Button>
                 </div>
 
                 <nav style={{display: "inline"}} className='d-flex mt-auto align-self-end dt buttons'>
