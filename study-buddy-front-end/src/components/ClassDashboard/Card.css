@@ -127,3 +127,11 @@
 .reminder-box{
     width: 20px;
 }
+
+.reminder-card .card{
+    min-width: 600px;
+}
+
+.reminderContent .measure{
+    max-width: 40em;
+}

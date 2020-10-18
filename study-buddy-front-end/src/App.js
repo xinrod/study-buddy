@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Home from './components/Home/Home';
+import ClassDashboard from './components/ClassDashboard/ClassDashboard'
 import 'tachyons';
-
 
 import Profile from './components/Home/Profile';
 import SearchBar from './components/Home/SearchBar';
@@ -37,6 +37,9 @@ export default function App() {
         </Route>
         <Route path="/about">
           {Signin()}
+        </Route>
+        <Route path="/ClassDashboard">
+          <ClassDashboard/>
         </Route>
       </Switch>
     </Router>
