@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { Modal, Button } from 'antd';
 import 'antd/dist/antd.css';
-
-import Form from 'react-bootstrap/Form';
 
 
 const Home = ({ username }) => {
@@ -33,14 +31,14 @@ const Home = ({ username }) => {
                 onOk={handleClose}
             >
                 {/* I did not change the labels/names in the html tags since there is not a CSS linked yet */}
-                <div class="pa4 black-80" >
-                    <div class="measure">
-                        <label for="name" class="f6 b db mb2">Username<span class="normal black-60"></span></label>
-                        <p class=" b--black-20 pa2 mb2 db w-100">{name}</p>
+                <div className="pa4 black-80" >
+                    <div className="measure">
+                        <label for="name" className="f6 b db mb2">Username<span className="normal black-60"></span></label>
+                        <p className=" b--black-20 pa2 mb2 db w-100">{name}</p>
                     </div>
-                    <div class="measure">
-                        <label for="name" class="f6 b db mb2">School<span class="normal black-60"></span></label>
-                        <p class=" b--black-20 pa2 mb2 db w-100">University of North Carolina at Chapel Hill</p>
+                    <div className="measure">
+                        <label for="name" className="f6 b db mb2">School<span className="normal black-60"></span></label>
+                        <p className=" b--black-20 pa2 mb2 db w-100">University of North Carolina at Chapel Hill</p>
                     </div>
                     
                 </div>

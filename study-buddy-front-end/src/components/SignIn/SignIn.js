@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'react-router-dom/Link';
 
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
@@ -22,20 +21,20 @@ const SignIn = ({handleSubmit}) => {
 
     return (
         <>
-            <section class="mw5 mw7-ns center bg-light-gray pa3 ph5-ns">
+            <section className="mw5 mw7-ns center bg-light-gray pa3 ph5-ns">
             <header>
 			<h1>Sign in to your account</h1>
 		    </header>
 
 {/* I did not change the labels/names in the html tags since there is not a CSS linked yet */ }
-            <Form id="signInForm" class="pa4 black-80" onSubmit={handleSubmi}>
+            <Form id="signInForm" className="pa4 black-80" onSubmit={handleSubmi}>
                     <div class="measure">
-                        <label for="username" class="f6 b db mb2">Username/Email<span class="normal black-60"></span></label>
-                        <input id='username' name='username' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="username-desc" />
+                        <label for="username" className="f6 b db mb2">Username/Email<span className="normal black-60"></span></label>
+                        <input id='username' name='username' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="username-desc" />
                     </div>
-                    <div class="measure">
-                        <label for="password" class="f6 b db mb2">Password<span class="normal black-60"></span></label>
-                        <input id="password" name='id' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="password" />
+                    <div className="measure">
+                        <label for="password" className="f6 b db mb2">Password<span className="normal black-60"></span></label>
+                        <input id="password" name='id' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="password" />
                     </div> 
                     <Button form='signInForm' style={mystyle} type="submit" value="Submit">Submit</Button>
             </Form>

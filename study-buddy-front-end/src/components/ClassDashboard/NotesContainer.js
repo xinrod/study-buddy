@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './ClassDashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Grid, Row, Col} from "react-bootstrap";
+import { Row, Col} from "react-bootstrap";
 
 const NotesContainer = () => {
     

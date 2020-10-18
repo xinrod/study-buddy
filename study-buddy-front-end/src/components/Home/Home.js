@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Home.css';
 import CardContainer from './CardContainer';
 import { useState } from 'react';
@@ -118,18 +118,18 @@ const Home = ({currClass, setClass, classes, addClass}) => {
                 onCancel={handleClose}
                 okButtonProps={{ form: 'classForm', key: 'submit', htmlType: 'submit' }}
             >
-                <Form id="classForm" class="pa4 black-80" onSubmit={handleSubmit}>
-                    <div class="measure">
-                        <label for="name" class="f6 b db mb2">Name<span class="normal black-60"></span></label>
-                        <input id='name' name='name' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
+                <Form id="classForm" className="pa4 black-80" onSubmit={handleSubmit}>
+                    <div className="measure">
+                        <label for="name" className="f6 b db mb2">Name<span className="normal black-60"></span></label>
+                        <input id='name' name='name' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc" />
                     </div>
-                    <div class="measure">
-                        <label for="classid" class="f6 b db mb2">Class ID<span class="normal black-60"></span></label>
-                        <input id="classid" name='id' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
+                    <div className="measure">
+                        <label for="classid" className="f6 b db mb2">Class ID<span className="normal black-60"></span></label>
+                        <input id="classid" name='id' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
                     </div>
-                    <div class="measure">
-                        <label for="description" class="f6 b db mb2">Description<span class="normal black-60"></span></label>
-                        <textarea id="description" name='description' class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
+                    <div className="measure">
+                        <label for="description" className="f6 b db mb2">Description<span className="normal black-60"></span></label>
+                        <textarea id="description" name='description' className="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="classid" />
                     </div>
                 </Form>
 
