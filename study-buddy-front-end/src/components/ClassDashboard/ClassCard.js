@@ -4,7 +4,7 @@ import './Card.css';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-const ClassCard = ({title, author, id, votenumber, onDelete, onUpvote, onDownvote}) => {
+const ClassCard = ({title, author, id, content, votenumber, onDelete, onUpvote, onDownvote}) => {
 
     {/*CSS in a javascript object*/}
     const btnStyle = {
