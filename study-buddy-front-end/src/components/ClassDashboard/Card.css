@@ -158,3 +158,11 @@
     width: 50%;
     color:red;
 }
+
+.vote-number{
+    position: absolute;
+    right: 40px;
+    bottom: 10px;
+    width: 50%;
+    color:black;
+}

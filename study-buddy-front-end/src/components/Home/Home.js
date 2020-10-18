@@ -136,7 +136,9 @@ const Home = ({currClass, setClass, classes, addClass}) => {
 
             </Modal>
             <br></br> 
-            <SearchBar handleSearch={handleSearch} className='ml4'/>
+            <div class="flex flex-wrap">
+                <SearchBar handleSearch={handleSearch} className='ml4'/>
+            </div>
             <Scroll>
                 <CardContainer onDelete={onDelete} className="center" classes={filteredClasses}/>
             </Scroll>
