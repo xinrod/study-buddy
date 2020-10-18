@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import './Card.css';
 import {Link} from 'react-router-dom';
 
-const ClassCard = ({title, author, id, onDelete}) => {
+const ClassCard = ({title, author, id, votenumber, onDelete, onUpvote, onDownvote}) => {
 
     {/*CSS in a javascript object*/}
     const btnStyle = {
@@ -13,25 +13,27 @@ const ClassCard = ({title, author, id, onDelete}) => {
 
     return (
         <>
-            <Link to={`/author=${author}/title=${title}`} className='nostyle' style={{color: 'inherit'}}>
-            <Card className='card br3 ba pa3 ma2 grow bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
-                            <div id='title'>{title}</div>
+            <Card className='card br3 ba pa3 ma2 bw2 shadow5 nostyle' style={{ width: '18rem', height: '18rem' }}>
+            <Link to={`/author=${author}/title=${title}`} className='nostyle grow' style={{color: 'inherit'}}>
+
+                            <div>{title}</div>
                     <p class="f6 lh-copy measure mid-gray">
                         Author: {author}
                     </p>
+            </Link> 
+
                 
                 <div class="upvote-button">
-                <button style={btnStyle} class="grow"type="button"><img src="./arrowup.png" alt="my image"/></button> {/* ADD onClick={} */}
+                    <Button onClick={onUpvote} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowup.png" alt="upvote"/></Button>
                 </div>
                 <div class="downvote-button">
-                    <button style={btnStyle} class="grow"type="button"><img src="./arrowdown.png" alt="my image"/></button> {/* ADD onClick={} */}
+                    <Button onClick={onDownvote} style={btnStyle} titleforrequest={`${title}`} authorforrequest={`${author}`} votenumber={votenumber} className="grow"><img src="./arrowdown.png" alt="downvote"/></Button>
                 </div>
 
                 <nav style={{display: "inline"}} className='d-flex mt-auto align-self-end dt buttons'>
-                    <Button onClick={onDelete} forDeleteName={title} className='btn-sm di grow delete'>Delete</Button>
+                    <Button onClick={onDelete}  titleforrequest={`${title}`} authorforrequest={`${author}`} className='btn-sm di grow delete'>Delete</Button>
                 </nav>
             </Card>
-            </Link> 
 
 
         </>

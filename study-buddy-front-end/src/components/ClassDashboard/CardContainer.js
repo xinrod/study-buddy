@@ -2,14 +2,17 @@ import React from 'react';
 import './ClassDashboard.css';
 import ClassCard from './ClassCard';
 
-const CardContainer = ({ notes, onDelete}) => {
+const CardContainer = ({ notes, onDelete, onUpvote, onDownvote}) => {
     const classComponent = notes.map((user, i) => {
         return (
             <ClassCard
                 title={notes[i].title}
                 author={notes[i].author}
                 id={notes[i].id}
+                votenumber={notes[i].votenumber}
                 onDelete={onDelete}
+                onUpvote={onUpvote}
+                onDownvote={onDownvote}
             />
         )
     });
